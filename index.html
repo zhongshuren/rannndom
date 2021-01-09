@@ -27,7 +27,7 @@
             padding: 16px 32px;
             text-align: center;
             display: inline-block;
-            font-size: 16px;
+            font-size: 24px;
             margin: 4px 2px;
             -webkit-transition-duration: 0.2s; /* Safari */
             transition-duration: 0.2s;
@@ -35,7 +35,8 @@
             text-decoration: none;
             text-transform: uppercase;
             width: 30%;
-            min-width: 400px;
+            height:100px;
+            min-width: 500px;
         }
         .btn1 {
             background-color: white;
@@ -47,10 +48,11 @@
             background-color: #b8b8b8;
             color: white;
         }
+
     </style>
 </head>
 <body>
-<div id="app" style="padding-top: 10%">
+<div id="app" :style="`margin-top:${Y}px;`">
     <h1>Can you make it zero?</h1>
     <span style="font-size: 50px;min-width:600px">Rnd + Rnd + Rnd = {{result}}</span>
     <br><br><br>
@@ -62,13 +64,19 @@
     let app = new Vue({
         el: '#app',
         mounted(){
+            this.Y = window.innerHeight/2-200
             let a=Math.floor(Math.random()*1000)/1000
             let b=Math.floor(Math.random()*1000)/1000
             let c=Math.floor(Math.random()*1000)/1000
             this.result = Math.floor((a+b+c)*1000)/1000
+            window.onresize= ()=>{
+                console.log(window.innerHeight)
+                this.Y = window.innerHeight/2-200
+            }
         },
         data: {
-            result: 0
+            result: 0,
+            Y: 0,
         },
         methods:{
             update: function(event){
