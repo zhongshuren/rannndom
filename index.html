@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>randddom</title>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            background-color: #f3f4f8;
+            text-align: center;
+        }
+        h1{
+            color: #8d8d8d;
+        }
+        .btn {
+            color: #8d8d8d;
+            background: transparent;
+            border: 2px solid #8d8d8d;
+            border-radius: 4px;
+            outline-style: none;
+            padding: 16px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.2s; /* Safari */
+            transition-duration: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            width: 30%;
+            min-width: 400px;
+        }
+        .btn1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #c9c9c9;
+        }
+        .btn:hover {
+            background-color: #b8b8b8;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="app" style="padding-top: 10%">
+    <h1>Can you make it zero?</h1>
+    <span style="font-size: 50px;min-width:600px">Rnd + Rnd + Rnd = {{result}}</span>
+    <br><br><br>
+    <button id="btn" class="btn" @click="update" @mousedown="changeColor1" @mouseup="changeColor3" @mouseenter="changeColor3" @mouseout="changeColor2">randddom!</button>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script type="text/javascript">
+    let app = new Vue({
+        el: '#app',
+        mounted(){
+          this.update()
+        },
+        data: {
+            result: 0
+        },
+        methods:{
+            update: function(){
+                let a=Math.floor(Math.random()*1000)/1000
+                let b=Math.floor(Math.random()*1000)/1000
+                let c=Math.floor(Math.random()*1000)/1000
+                this.result = Math.floor((a+b+c)*1000)/1000
+            },
+            changeColor1: function(event){
+                event.currentTarget.style.backgroundColor = '#939393'
+            },
+            changeColor2: function(event){
+                event.currentTarget.style.backgroundColor = 'transparent'
+            },
+            changeColor3: function(event){
+                event.currentTarget.style.backgroundColor = '#b8b8b8'
+            },
+        }
+    })
+</script>
+</html>
