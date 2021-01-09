@@ -14,11 +14,16 @@
             color: #8d8d8d;
         }
         .btn {
+            /* 文字颜色 */
             color: #8d8d8d;
+            /* 清除背景色 */
             background: transparent;
+            /* 边框样式、颜色、宽度 */
             border: 2px solid #8d8d8d;
+            /* 给边框添加圆角 */
             border-radius: 4px;
             outline-style: none;
+            /* 字母转大写 */
             padding: 16px 32px;
             text-align: center;
             display: inline-block;
@@ -37,6 +42,7 @@
             color: black;
             border: 2px solid #c9c9c9;
         }
+        /* 悬停样式 */
         .btn:hover {
             background-color: #b8b8b8;
             color: white;
@@ -48,7 +54,7 @@
     <h1>Can you make it zero?</h1>
     <span style="font-size: 50px;min-width:600px">Rnd + Rnd + Rnd = {{result}}</span>
     <br><br><br>
-    <button id="btn" class="btn" @click="update" @mousedown="changeColor1" @mouseup="changeColor3" @mouseenter="changeColor3" @mouseout="changeColor2">randddom!</button>
+    <button id="btn" class="btn" @mousedown="changeColor1" @mouseup="update" @touchend="update" @mouseenter="changeColor3" @mouseout="changeColor2">randddom!</button>
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -56,25 +62,33 @@
     let app = new Vue({
         el: '#app',
         mounted(){
-          this.update()
+            let a=Math.floor(Math.random()*1000)/1000
+            let b=Math.floor(Math.random()*1000)/1000
+            let c=Math.floor(Math.random()*1000)/1000
+            this.result = Math.floor((a+b+c)*1000)/1000
         },
         data: {
             result: 0
         },
         methods:{
-            update: function(){
+            update: function(event){
+                event.preventDefault()
                 let a=Math.floor(Math.random()*1000)/1000
                 let b=Math.floor(Math.random()*1000)/1000
                 let c=Math.floor(Math.random()*1000)/1000
                 this.result = Math.floor((a+b+c)*1000)/1000
+                event.currentTarget.style.backgroundColor = '#b8b8b8'
             },
             changeColor1: function(event){
+                event.preventDefault()
                 event.currentTarget.style.backgroundColor = '#939393'
             },
             changeColor2: function(event){
+                event.preventDefault()
                 event.currentTarget.style.backgroundColor = 'transparent'
             },
             changeColor3: function(event){
+                event.preventDefault()
                 event.currentTarget.style.backgroundColor = '#b8b8b8'
             },
         }
